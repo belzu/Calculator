@@ -25,30 +25,14 @@ public class ExpGUI extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtNum;
 	private JTextField txtExp;
-	public JButton btnOk = new JButton("OK");
+	private JButton btnOk = new JButton("OK");
 	
-	JRadioButton rdbtnPower = new JRadioButton("Power");
+	private JRadioButton rdbtnPower = new JRadioButton("Power");
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	JRadioButton rdbtnRoot = new JRadioButton("Root");
-	double result;
-	double num;
-	double exp;
-
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					ExpGUI frame = new ExpGUI();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	private JRadioButton rdbtnRoot = new JRadioButton("Root");
+	private double result;
+	private double num;
+	private double exp;
 	
 	public double getRes() {
 		return result;
@@ -56,7 +40,7 @@ public class ExpGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ExpGUI(CalculatorGUI calc) {
+	public ExpGUI(CalculatorGUI calcGUI) {
 		try 
         {
             setIconImage(Toolkit.getDefaultToolkit().getImage("icon/calculator.png"));
@@ -68,6 +52,8 @@ public class ExpGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setUndecorated(false);
+		this.setVisible(true);
+		this.setAlwaysOnTop(true);
 		this.setTitle("Pow | Root");
 		setBounds(100, 100, 494, 239);
 		contentPane = new JPanel();
@@ -82,13 +68,12 @@ public class ExpGUI extends JFrame {
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					num = Integer.parseInt(txtNum.getText().toString());
-					System.out.println(num);
-					exp = Integer.parseInt(txtExp.getText().toString());
-					if(rdbtnRoot.isSelected()) result = Math.pow(num, 1/exp);				
-					else result = Math.pow(num, exp);
-					calc.getScreen().setText(calc.getScreen().getText() + result);
-					System.out.println(result);
+//					num = Double.parseDouble(txtNum.getText().toString());
+//					exp = Double.parseDouble(txtExp.getText().toString());
+					
+					if(rdbtnRoot.isSelected()) calcGUI.actionAddSymbol(String.format("Math.sqrt(%s,%s)", txtNum.getText(),txtExp.getText())); //result = Math.pow(num, 1/exp);				
+					else calcGUI.actionAddSymbol(String.format("Math.pow(%s,%s)", txtNum.getText(),txtExp.getText())); //result = Math.pow(num, exp);
+					//calcGUI.actionAddSymbol(Double.toString(result));
 					txtExp.setText("");
 					txtNum.setText("");
 					btnOk.setEnabled(true);
