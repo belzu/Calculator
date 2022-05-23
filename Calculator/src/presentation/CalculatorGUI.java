@@ -1,6 +1,7 @@
 package presentation;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -8,15 +9,14 @@ import java.util.TreeMap;
 import javax.script.ScriptException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
 import model.Button;
 import model.ButtonInfo;
 import model.businessLogic.OperationMaker;
-import javax.swing.JScrollPane;
-import javax.swing.JScrollBar;
-import javax.swing.JTextArea;
 
 public class CalculatorGUI extends JFrame {
 	private OperationMaker operationMaker;
@@ -41,6 +41,7 @@ public class CalculatorGUI extends JFrame {
 		this.getContentPane().setLayout(null);
 		this.operationScreen = new JTextArea();
 		this.operationScreen.setColumns(10);
+		this.operationScreen.setFont(new Font("Console", Font.PLAIN, 20));
 		this.scrollPane = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		this.scrollPane.setBounds(10, 11, 469, 62);
 		getContentPane().add(this.scrollPane);
@@ -56,7 +57,6 @@ public class CalculatorGUI extends JFrame {
 		this.expGUI = null;
 		
 		this.operationMaker = new OperationMaker();
-		System.out.println(this.operationMaker.getEngine());
 		this.buttonInfoList = buttonInfoList;
 		this.buttonMap = new TreeMap<String, Button>();
 		for(int i = 0; i<this.buttonInfoList.size();i++) {
@@ -67,6 +67,7 @@ public class CalculatorGUI extends JFrame {
 		}
 		this.resultScreen = new JTextField();
 		this.resultScreen.setColumns(10);
+		this.resultScreen.setFont(new Font("Console", Font.PLAIN, 20));
 		this.resultScreen.setEditable(false);
 		this.resultScreen.setBounds(10, 338, 469, 62);
 		getContentPane().add(resultScreen);
@@ -132,7 +133,7 @@ public class CalculatorGUI extends JFrame {
 	}
 	
 	private void assignEvents() {
-		String[] screenSymbols = new String[]{ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "(", ")", "+", "*", "-", "/", "."};
+		String[] screenSymbols = new String[]{ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "(", ")", "+", "*", "-", "/", ".", "E"};
 		for(int i = 0; i<screenSymbols.length;i++) {
 			String symbol = screenSymbols[i];
 			this.buttonMap.get(symbol).addActionListener(x->this.actionAddSymbol(symbol));

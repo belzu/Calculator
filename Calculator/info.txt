@@ -1,9 +1,9 @@
 
 This calculator was done by: Ignacio Belzunegui
 
----------------------
+	---------------------
 	Information:
----------------------
+	---------------------
 	-The purpose of the x^y button is to make roots and power raises given certain parameters
 	-The output of the x^y button will be the result of the operation selected by the user
 	-The C button deletes the content of the input screen

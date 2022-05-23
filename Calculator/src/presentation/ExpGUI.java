@@ -68,12 +68,8 @@ public class ExpGUI extends JFrame {
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-//					num = Double.parseDouble(txtNum.getText().toString());
-//					exp = Double.parseDouble(txtExp.getText().toString());
-					
 					if(rdbtnRoot.isSelected()) calcGUI.actionAddSymbol(String.format("Math.sqrt(%s,%s)", txtNum.getText(),txtExp.getText())); //result = Math.pow(num, 1/exp);				
 					else calcGUI.actionAddSymbol(String.format("Math.pow(%s,%s)", txtNum.getText(),txtExp.getText())); //result = Math.pow(num, exp);
-					//calcGUI.actionAddSymbol(Double.toString(result));
 					txtExp.setText("");
 					txtNum.setText("");
 					btnOk.setEnabled(true);
